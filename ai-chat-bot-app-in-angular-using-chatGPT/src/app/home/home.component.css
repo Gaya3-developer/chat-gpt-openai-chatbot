@@ -1,0 +1,35 @@
+
+.header {
+    margin-top: 20vh;
+    font-family: "Lato", sans-serif;
+    font-size: 36px;
+    line-height: 2.5rem;
+    font-weight: 600;
+    color: var(--theme-color);
+    margin-bottom: 4rem;
+  }
+
+  .item-wrapper{
+    border: 2px solid var(--theme-color);
+  border-radius: 15px;
+  padding:30px;
+  cursor: pointer;
+  color: var(--theme-color);
+  height: 100%;
+  }
+  .item-wrapper:hover {
+    background: var(--theme-color);
+    color: var(--theme-text-color);
+  }
+
+  .item-wrapper h3 {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  .item-wrapper p {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 12px;
+  }

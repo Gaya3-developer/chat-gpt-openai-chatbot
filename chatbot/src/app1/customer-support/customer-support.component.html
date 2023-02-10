@@ -1,0 +1,72 @@
+<div class="container my-5">
+    <div class="header">
+        <h4 class="center text-primary my-5">Chatting With Mr BOT powered by ChatGPT</h4>
+
+    </div>
+   
+    <div class="row">
+        <div class="col-md-12">
+                <div class="card">
+                        <div class="row">
+                            <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                <div class="center">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" alt="avatar 1" style="width: 5rem; height: 5rem;">
+                                    <p class="center my-3 text-primary title">Mr. Bot</p>
+                                    <p class="desc">   Be as direct and specific as possible in your questions. <br/>
+                                        And remember, nobody is perfect. But all chatbots try their best.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="frame-box">
+                                    <div class="d-flex flex-row justify-content-start" >
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                                        <div>
+                                          <p class="small p-2 ms-3 mb-1 rounded-3 bot" style="background-color: #f5f6f7;">Hi there! Mr BOT here. How can I help you today?</p>
+                                          <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{jstoday}}</p>
+                                        </div>
+                                      </div>
+                                      <ng-container *ngFor="let item of chatConversation">
+                                        <div class="d-flex flex-row justify-content-start" *ngIf="item.person === 'bot'" >
+                                            <img src="{{item.image}}" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <div>
+                                              <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;" [ngClass]="item.cssClass">{{getText(item.response)}}   </p>
+                                              <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{jstoday}}</p>
+                                            </div>
+                                          </div>
+                                          <div class="d-flex flex-row justify-content-end" *ngIf="item.person === 'you'" >
+                                            <div>
+                                              <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary" [ngClass]="item.cssClass">
+                                                {{getText(item.response)}}    
+                                              </p>
+                                              <p class="small me-3 mb-3 rounded-3 text-muted">{{jstoday}}</p>
+                                            </div>
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                                          </div>
+                                      </ng-container>
+                                     
+                                 
+                                    <div><img src="../../assets/ZNeT.gif" *ngIf="showSpinner" width="50px" height="50px"></div>
+                                    
+                                </div>
+                                <br>
+                                    <textarea row="3" cols="15" class="form-control" [(ngModel)]="promptText" placeholder="Start by asking what you are looking for"></textarea>
+                                    <br>
+                                        <button class="btn btn-primary push-right" (click)="checkResponse()">Send</button>
+                                    </div>
+                                 
+                                </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            
+
+
+            
+            

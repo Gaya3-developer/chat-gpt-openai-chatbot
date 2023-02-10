@@ -1,0 +1,19 @@
+<div class="container">
+    <h4 class="center header">ChatGPT Clone</h4>
+    <div class="row">
+        <div class="col-md-3 my-4" *ngFor="let item of AIOptions">
+<div class="item-wrapper" routerLink = "/chat" (click)="selectOption(item.option)">
+    <h3> {{item.name}}</h3>
+    <p> {{item.description}}</p>
+
+</div>
+        </div>
+        <div class="col-md-3 my-4">
+            <div class="item-wrapper" routerLink = "/image">
+                <h3> image</h3>
+                <p> generate image using open ai</p>
+            
+            </div>
+                    </div>
+    </div>
+</div>  

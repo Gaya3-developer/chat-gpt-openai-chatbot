@@ -1,0 +1,183 @@
+<div class="container">
+  <h4 class="center header">Chatting With Mr BOT</h4>
+
+  <div class="row">
+    <div class="col-12">
+      
+      <div class="frame-box">
+        <div class="d-flex flex-row justify-content-start" >
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+            <div>
+              <p class="small p-2 ms-3 mb-1 rounded-3 bot" style="background-color: #f5f6f7;">Hi there! Mr BOT here. How can I help you today?</p>
+              <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{jstoday}}</p>
+            </div>
+          </div>
+          <!-- <div class="d-flex flex-row justify-content-end" >
+            <button class="edit-button" (click)="enable()">
+              <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+            <div>
+              <input  class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary" type="text" [disabled]='toggleButton' value="hello">
+             <div class="center" *ngIf="!toggleButton">
+              <button class="submit" (click)="checkEditResponse()">save</button>
+              <button class="cancel" (click)="disable()">cancel</button>
+             </div>
+              <p class="small me-3 mb-3 rounded-3 text-muted">dfd</p>
+            </div>
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+          </div> -->
+          <ng-container *ngFor="let item of chatConversation; let i=index">
+            <div class="d-flex flex-row justify-content-start" *ngIf="item.person === 'bot'" >
+                <img src="{{item.image}}" alt="avatar 1" style="width: 45px; height: 100%;">
+                <div>
+                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;" [ngClass]="item.cssClass">{{getText(item.response)}}   </p>
+                  <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{jstoday}}</p>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-end" *ngIf="item.person === 'you'" >
+                <button class="edit-button" (click)="toggleButton[i] = !toggleButton[i]">
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                
+                <div>
+                  <input  [(ngModel)]="item.response"  class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"  [ngClass]="item.cssClass" type="text" [disabled]='!toggleButton[i]' ng-model="getText(item.response)">
+            
+                  <div class="center" *ngIf="toggleButton[i]">
+                    <button class="submit" (click)="checkEditResponse(i)">save</button>
+                    <button class="cancel" (click)="toggleButton[i] = !toggleButton[i]">cancel</button>
+                   </div>
+                  <p class="small me-3 mb-3 rounded-3 text-muted">{{jstoday}}</p>
+                </div>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+              </div>
+          </ng-container>
+         
+     
+        <div><img src="../../assets/ZNeT.gif" *ngIf="showSpinner" width="50px" height="50px"></div>
+        
+    </div>
+
+      <div
+        class="message-container"
+      >
+        <div
+          class="message-form-wrapper"
+        >
+          <div class="message-wrapper">
+            <div
+              class="message"
+            >
+              <input
+                tabindex="0"
+                data-id="root"
+                rows="1"
+                placeholder=""
+                class="message-input"
+                [(ngModel)]="promptText"
+                required
+                #message="ngModel"
+                (keyup.enter)="onEnter($event)"
+              />
+
+              <button
+                class="message-button"
+                (click)="checkResponse()"
+                [disabled]="!promptText"
+              >
+                <svg
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4 w-4 mr-1"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+<div class="container my-5">
+    <div class="header">
+        <h4 class="center text-primary my-5">Chatting With Mr BOT powered by ChatGPT</h4>
+
+    </div>
+   
+    <div class="row">
+        <div class="col-md-12">
+                <div class="card">
+                        <div class="row">
+                            <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                <div class="center">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" alt="avatar 1" style="width: 5rem; height: 5rem;">
+                                    <p class="center my-3 text-primary title">Mr. Bot</p>
+                                    <p class="desc">   Be as direct and specific as possible in your questions. <br/>
+                                        And remember, nobody is perfect. But all chatbots try their best.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="frame-box">
+                                    <div class="d-flex flex-row justify-content-start" >
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                                        <div>
+                                          <p class="small p-2 ms-3 mb-1 rounded-3 bot" style="background-color: #f5f6f7;">Hi there! Mr BOT here. How can I help you today?</p>
+                                          <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{jstoday}}</p>
+                                        </div>
+                                      </div>
+                                      <ng-container *ngFor="let item of chatConversation">
+                                        <div class="d-flex flex-row justify-content-start" *ngIf="item.person === 'bot'" >
+                                            <img src="{{item.image}}" alt="avatar 1" style="width: 45px; height: 100%;">
+                                            <div>
+                                              <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;" [ngClass]="item.cssClass">{{getText(item.response)}}   </p>
+                                              <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{jstoday}}</p>
+                                            </div>
+                                          </div>
+                                          <div class="d-flex flex-row justify-content-end" *ngIf="item.person === 'you'" >
+                                            <div>
+                                              <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary" [ngClass]="item.cssClass">
+                                                {{getText(item.response)}}    
+                                              </p>
+                                              <p class="small me-3 mb-3 rounded-3 text-muted">{{jstoday}}</p>
+                                            </div>
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                                          </div>
+                                      </ng-container>
+                                     
+                                 
+                                    <div><img src="../../assets/ZNeT.gif" *ngIf="showSpinner" width="50px" height="50px"></div>
+                                    
+                                </div>
+                                <br>
+                                    <textarea row="3" cols="15" class="form-control" [(ngModel)]="promptText" placeholder="Start by asking what you are looking for"></textarea>
+                                    <br>
+                                        <button class="btn btn-primary push-right" (click)="checkResponse()">Send</button>
+                                    </div>
+                                 
+                                </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            
+
+
+            
+             -->
